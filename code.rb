@@ -25,8 +25,8 @@ recipe = {
 
 recipe_title = "Recipe: #{recipe[:name]}"
 recipe_ingredients = recipe[:ingredients]
-recipe_directions = "#{recipe[:directions]}"
-
+recipe_directions = recipe[:directions]
+count = 0
 recipe_template = <<-ERB
 
 #=<%= "=" * recipe_title.length %>=#
@@ -42,6 +42,10 @@ Ingredients
 
 Directions
 ----------
+<% recipe_directions.each do |value| %>
+  <% count += 1 %>
+  <%= count %>. <%= value %>
+<% end %>
 
 ERB
 
