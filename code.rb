@@ -24,7 +24,7 @@ recipe = {
 }
 
 recipe_title = "Recipe: #{recipe[:name]}"
-recipe_ingredients = "#{recipe[:ingredients]}"
+recipe_ingredients = recipe[:ingredients]
 recipe_directions = "#{recipe[:directions]}"
 
 recipe_template = <<-ERB
@@ -36,7 +36,16 @@ recipe_template = <<-ERB
 Ingredients
 -----------
 
+<% recipe_ingredients.each do |ingredient| %>
+  <%= ingredient %>
+<% end %>
+
+Directions
+----------
+
 ERB
+
+
 
 erb = ERB.new(recipe_template)
 puts erb.result
